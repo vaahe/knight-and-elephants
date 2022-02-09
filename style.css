@@ -2,7 +2,7 @@
  ::after,
  ::before {
     margin: 0;
-    padding: 0px;
+    padding: 0;
 }
 
 body {
@@ -22,7 +22,8 @@ body {
     background-color: white;
 }
 
-.modal {
+.modal,
+.modal2{
     position: fixed;
     background-color: rgba(0, 0, 0, 0.4);
     width: 100%;
@@ -42,7 +43,6 @@ body {
     margin: 0 400px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-family: Arial, Helvetica, sans-serif;
-    vertical-align: middle;
     text-align: center;
     flex-direction: column;
     display: flex;
@@ -75,3 +75,12 @@ select:hover {
 .modal-content>button:hover {
     background-color: rgb(59, 52, 52);
 }
+
+.modal2 {
+ display: none;
+}
+
+h2 {
+    margin: 30px 0;
+}
+
