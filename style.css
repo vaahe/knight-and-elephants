@@ -2,25 +2,24 @@
  ::after,
  ::before {
     margin: 0;
-    padding: 1px;
+    padding: 0px;
 }
 
 body {
     background-image: url('img/thumb_561.jpg');
+    height: 100vh;
 }
 
-.canvas {
+.container {
     display: grid;
-    grid-template-columns: repeat(15, 35px);
-    grid-template-rows: repeat(15, 35px);
     justify-content: center;
+    align-content: center;
     grid-gap: 1px;
-    vertical-align: bottom;
+    height: 100%;
 }
 
-.canvas-item {
+.container-item {
     background-color: white;
-    transform: translateY(50%);
 }
 
 .modal {
