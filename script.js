@@ -12,7 +12,7 @@ const createElephant = (x, y) => {
 
     for (let i = 0; i < (x * y) / 5; i++) {
         let random = Math.floor(Math.random() * nodes.length);
-        if(arr.includes(random)) {
+        if (arr.includes(random)) {
             random = Math.floor(Math.random() * nodes.length);
             arr.push(random);
         } else {
