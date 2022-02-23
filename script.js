@@ -3,21 +3,30 @@ const startButton = document.getElementById('startButton');
 const modal = document.getElementById('modal');
 const select = document.getElementById('size');
 let matrix;
-let interval;
 let seconds = 0;
+let interval;
 
 const createElephant = (x, y) => {
     const nodes = container.childNodes;
+    const arr = [];
 
-    for (let i = 0; i < x * y / 5; i++) {
+    for (let i = 0; i < (x * y) / 5; i++) {
+        let random = Math.floor(Math.random() * nodes.length);
+        if(arr.includes(random)) {
+            random = Math.floor(Math.random() * nodes.length);
+            arr.push(random);
+        } else {
+            arr.push(random);
+        }
+
         const elephantImg = document.createElement('img');
-        const rand = nodes[Math.floor(Math.random()*nodes.length)];
+        const randomNode = nodes[random];
 
         elephantImg.src = 'img/elephant.png';
         elephantImg.width = 48;
         elephantImg.height = 48;
         elephantImg.classList.add('elephant');
-        rand.appendChild(elephantImg);
+        randomNode.appendChild(elephantImg);
 
         if (select.selectedIndex === 2) {
             elephantImg.width = 33;
@@ -57,8 +66,7 @@ const createField = (x, y) => {
 
     document.addEventListener('keydown', move);
     interval = setInterval(() => {
-         seconds += 1;
-         return seconds;
+        seconds += 1
     }, 1000);
 }
 
@@ -79,67 +87,48 @@ const move = (e) => {
     knightImg.width = 48;
     knightImg.height = 48;
 
+    const current = matrix[i][j];
+
+    const Condition = next => {
+        if (!next.childNodes.length) {
+            next.appendChild(knightImg);
+            current.innerHTML = ''
+        } else {
+            next.innerHTML = '';
+            current.innerHTML = '';
+            next.appendChild(knightImg)
+        }
+    }
+
     switch (e.key) {
-        case "w": {
+        case "ArrowUp": {
             if (i > 0) {
-                const current = matrix[i][j]
                 const next = matrix[i - 1][j]
-                if (!next.childNodes.length) {
-                    next.appendChild(knightImg);
-                    current.innerHTML = ''
-                } else {
-                    next.innerHTML = '';
-                    current.innerHTML = '';
-                    next.appendChild(knightImg)
-                }
+                Condition(next);
             }
         }
         break;
 
-        case "a": {
+        case "ArrowLeft": {
             if (j > 0) {
-                const current = matrix[i][j];
                 const next = matrix[i][j - 1];
-                if (!next.childNodes.length) {
-                    next.appendChild(knightImg);
-                    current.innerHTML = ''
-                } else {
-                    next.innerHTML = '';
-                    current.innerHTML = '';
-                    next.appendChild(knightImg)
-                }
+                Condition(next);
             }
         }
         break;
 
-        case "d": {
+        case "ArrowRight": {
             if (j < matrix[j].length-1) {
-                const current = matrix[i][j];
                 const next = matrix[i][j + 1];
-                if (!next.childNodes.length) {
-                    next.appendChild(knightImg);
-                    current.innerHTML = ''
-                } else {
-                    next.innerHTML = '';
-                    current.innerHTML = '';
-                    next.appendChild(knightImg)
-                }
+                Condition(next);
             }
         }
         break;
 
-        case "s": {
+        case "ArrowDown": {
             if (i < matrix[i].length-1) {
-                const current = matrix[i][j];
                 const next = matrix[i + 1][j];
-                if (!next.childNodes.length) {
-                    next.appendChild(knightImg);
-                    current.innerHTML = ''
-                } else {
-                    next.innerHTML = '';
-                    current.innerHTML = '';
-                    next.appendChild(knightImg)
-                }
+                Condition(next);
             }
         }
         break;
