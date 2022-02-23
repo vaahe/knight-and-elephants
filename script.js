@@ -89,7 +89,7 @@ const move = (e) => {
 
     const current = matrix[i][j];
 
-    const Condition = next => {
+    const condition = next => {
         if (!next.childNodes.length) {
             next.appendChild(knightImg);
             current.innerHTML = ''
@@ -104,7 +104,7 @@ const move = (e) => {
         case "ArrowUp": {
             if (i > 0) {
                 const next = matrix[i - 1][j]
-                Condition(next);
+                condition(next);
             }
         }
         break;
@@ -112,7 +112,7 @@ const move = (e) => {
         case "ArrowLeft": {
             if (j > 0) {
                 const next = matrix[i][j - 1];
-                Condition(next);
+                condition(next);
             }
         }
         break;
@@ -120,7 +120,7 @@ const move = (e) => {
         case "ArrowRight": {
             if (j < matrix[j].length-1) {
                 const next = matrix[i][j + 1];
-                Condition(next);
+                condition(next);
             }
         }
         break;
@@ -128,7 +128,7 @@ const move = (e) => {
         case "ArrowDown": {
             if (i < matrix[i].length-1) {
                 const next = matrix[i + 1][j];
-                Condition(next);
+                condition(next);
             }
         }
         break;
